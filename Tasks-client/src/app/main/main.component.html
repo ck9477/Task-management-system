@@ -1,0 +1,30 @@
+<div class="row">
+  <nav class="navbar">
+    <ul>
+      
+      @for(button of buttons;track button;){
+        <li><a class="active"  
+         [ngClass]="{'disabled': button.disabled}"
+         [innerText]="button.name"
+          (click)="navigate(button.value)"
+          routerLink=""
+          routerLinkActive="active">
+        </a></li>
+       }
+    </ul>
+  </nav>
+  
+
+    <div class="flex-col"> 
+      <div class="flex-row">
+        <span  *ngIf="isServerAlive === null">בודק מצב שרת...</span>
+        <span  *ngIf="isServerAlive === true" style="color: green;">✅ השרת פעיל</span>
+        <span  *ngIf="isServerAlive === false" style="color: red;">❌ השרת אינו פעיל</span>
+     </div>
+      <button [innerText]="'החלף משתמש'" 
+      (click)="changeUser()"
+      [disabled]="!isServerAlive"></button>
+  </div> 
+</div>
+<router-outlet></router-outlet>
+

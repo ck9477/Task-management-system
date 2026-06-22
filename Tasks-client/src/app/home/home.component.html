@@ -1,0 +1,29 @@
+ 
+<div class="hero-section">
+  <div class="overlay">
+    <div class="content">
+      <h3 class="fade-in top">שלום,   אני <span class="highlight" [innerText]="homeDetails.meName"></span></h3>
+     
+      <h2 class="fade-in delay1" [innerText]="homeDetails.meTitle"></h2>
+ 
+      <p class="fade-in delay2" [innerText]="homeDetails.meDescription">
+        
+      </p>
+
+      <div class="buttons fade-in delay3">
+        <button   (click)="openCV()">קורות חיים</button>
+        <button (click)="gotoTasks()">לצפייה בפרוייקט</button>
+        <button  appCopyToClipboard>יצירת קשר</button>
+      </div>
+
+      <div class="tech-stack fade-in delay4">
+        <h3>טכנולוגיות:</h3>
+        <ul>
+         @for (tech of homeDetails.techStack; track tech) {
+            <li [innerText]="tech"></li>
+          }
+
+        </ul>
+      </div>
+
+    

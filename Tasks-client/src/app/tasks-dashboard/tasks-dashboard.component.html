@@ -1,0 +1,12 @@
+<div    class="rect">
+
+    @for (oneTask of tasksList ; track oneTask) {
+        <app-task [task]="oneTask">
+            
+        
+            @if(oneTask.status=== theStatusEnum.pending){
+            <span class="shake" end>נונונו...</span>
+            }
+        </app-task>
+    }
+  </div>

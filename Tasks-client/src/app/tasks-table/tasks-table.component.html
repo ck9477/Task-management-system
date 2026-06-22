@@ -1,0 +1,43 @@
+ 
+    <mat-table [dataSource]="tasksList || []" class="mat-table custom-table">
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef class="column" [class]="column + '-column'">
+                <span [innerText]="column | toColumnName"></span>
+            </mat-header-cell>
+          
+                <mat-cell *matCellDef="let element"  class="column" [class]="column + '-column'">
+                    
+                     @if(column === 'scheduling'){
+                        <span [innerText]="element[column] | date: 'dd/MM/yyyy'"></span>
+                     } 
+                      
+                     @if(column !== 'scheduling' && !iconColumns.includes(column)){
+                        <span [innerText]="element[column]"></span>
+                     }
+                     @if(column === 'status'){
+                         <span [innerText]="element[column] | statusText"></span>
+                        <mat-icon  >
+                          {{ element[column] | statusIcon }}
+                        </mat-icon>  
+                     }
+
+                      @if(column === 'update'){
+                                <mat-icon [class.disabled]="!isEditable(element)" (click)="isEditable(element) && updateTask(element)" >update</mat-icon>  
+                     }
+                        @if(column === 'delete'){
+                        <mat-icon  (click)="deleteTask(element)">delete</mat-icon>  
+                     }
+                </mat-cell>
+           
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+
+    
+    </mat-table>
+ 
+
+
+
+

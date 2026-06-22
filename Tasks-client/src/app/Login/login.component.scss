@@ -1,0 +1,116 @@
+:host {
+
+  .login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    padding: 30px;
+    font-family: 'Rubik', 'Segoe UI', sans-serif;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 420px;
+
+    background: #ffffff;
+    border-radius: 16px;
+
+    padding: 44px;
+
+    box-shadow: 0 18px 36px rgba(61, 90, 128, 0.15);
+    border: 1px solid #3d5a80;
+
+    text-align: center;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  h2 {
+    color: #3d5a80;
+    margin-bottom: 28px;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+  }
+
+  .input-group {
+    margin-bottom: 18px;
+    text-align: right;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #3d5a80;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 10px;
+    border: 1px solid #3d5a80;
+    background: linear-gradient(180deg, #f0f4f8, #ffffff);
+    color: #334e68;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.25s ease;
+    box-shadow: inset 0 1px 2px rgba(16, 42, 67, 0.05);
+  }
+
+  .input-group input::placeholder {
+    color: #94a3b8;
+  }
+
+  .input-group input:hover {
+    border-color: #18e6c3;
+  }
+
+  .input-group input:focus {
+    border-color: #18e6c3;
+    box-shadow: 0 0 0 4px rgba(61, 90, 128, 0.15);
+    background: #ffffff;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    background: linear-gradient(90deg, #3d5a80, #18e6c3);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .login-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(61,90,128,0.25);
+    background: linear-gradient(90deg, #18e6c3, #3d5a80);
+  }
+
+  .login-btn:disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+}

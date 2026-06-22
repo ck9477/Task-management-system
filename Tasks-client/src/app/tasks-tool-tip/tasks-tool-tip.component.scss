@@ -1,0 +1,119 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  direction: rtl;
+  font-family: 'Rubik', 'Segoe UI', sans-serif;
+  padding: 20px;
+  background: #f0f4f8;
+}
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Tooltip מותאם לעיצוב האתר */
+.tooltip {
+  position: absolute;
+  top: 115%;
+  right: 50%;
+  transform: translateX(50%);
+  min-width: 200px;
+
+  background: #334e68; /* כחול בינוני להיררכיה עם הרקע */
+  color: #f8fafc;     /* טקסט בהיר */
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 12px 25px rgba(61, 90, 128, 0.25); /* דגש על הצללה עקבית */
+  z-index: 1000;
+
+  animation: fadeIn 0.2s ease;
+}
+
+/* שורה פנימית */
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 0.85rem;
+}
+
+/* הערכים */
+.value {
+  font-weight: 600;
+  color: #18e6c3; /* טורקיז עקבי עם אייקון mat-icon */
+}
+
+/* אנימציה */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(50%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(50%) translateY(0);
+  }
+}
+
+/* התאמה למראה של one-box */
+.one-box {
+  width: 200px;
+  height: 260px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(61, 90, 128, 0.12);
+  border: 1px solid #d9e2ec;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.one-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(61, 90, 128, 0.18);
+}
+
+.divColor {
+  padding: 14px;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg, #3d5a80, #526d8a);
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 14px;
+}
+
+.data {
+  font-size: 0.92rem;
+  color: #334e68;
+  margin-bottom: 6px;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  color: #3d5a80;
+  font-weight: 600;
+}
+
+mat-icon {
+  color: #18e6c3;
+}
+
+.actions {
+  padding: 12px 14px;
+  display: flex;
+  justify-content: center;
+}

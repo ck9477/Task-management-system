@@ -1,0 +1,168 @@
+:host {
+
+  .row {
+    direction: rtl;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 14px 24px;
+
+    background: #3d5a80;
+    color: #ffffff;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-sizing: border-box;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .navbar {
+    flex: 1;
+  }
+
+  .navbar ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .navbar li {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar a {
+    text-decoration: none;
+
+    color: #ffffff;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    transition: all .25s ease;
+  }
+
+  .navbar a:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .navbar a.active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .navbar .disabled {
+    opacity: .4;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 180px;
+  }
+
+  .flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  button {
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 10px 18px;
+
+    min-width: 140px;
+
+    cursor: pointer;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    background: #ffffff;
+
+    color: #3d5a80;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    transition: all .3s ease;
+  }
+
+  button:hover:not(:disabled) {
+    transform: translateY(-3px);
+
+    background: #f8fafc;
+
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  button:active:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  button:disabled {
+    background: rgba(255, 255, 255, 0.4);
+
+    color: rgba(61, 90, 128, 0.5);
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+  }
+
+  @media (max-width: 900px) {
+
+    .row {
+      flex-direction: column;
+      gap: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .navbar ul {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .flex-col {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div *ngIf="task" class="one-box">
+
+  <div class="divColor" [innerText]="task.name"></div>
+
+  <div class="content">
+    <div class="data" [innerText]="task.description"></div>
+    <div class="data">מחיר: {{ task.price | currency:'ILS' }}</div>
+    <div class="data">תאריך: {{ task.scheduling | date:'dd/MM/yyyy' }}</div>
+  </div>
+
+  <div class="status-row">
+    <span>{{ task.status | statusText }}</span>
+    <mat-icon>{{ task.status | statusIcon }}</mat-icon>
+  </div>
+
+  <div class="actions">
+    <ng-content select="[end]"></ng-content>
+  </div>
+
+</div>

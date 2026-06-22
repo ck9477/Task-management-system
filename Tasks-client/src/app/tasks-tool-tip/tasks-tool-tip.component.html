@@ -1,0 +1,38 @@
+<div
+  class="tooltip-wrapper"
+  (mouseenter)="mouseenter()"
+  (mouseleave)="mouseleave()"
+>
+
+  <ng-content></ng-content>
+
+  <div *ngIf="show()" class="tooltip">
+
+    <div class="tooltip-row">
+      <span>מספר משימות:</span>
+      <span class="value">{{ taskCount() }}</span>
+    </div>
+
+    <div class="tooltip-row">
+      <span>משימות שהסתיימו:</span>
+      <span class="value">{{ completedCount() }}</span>
+    </div>
+
+    <div class="tooltip-row">
+      <span>משימות שבוטלו:</span>
+      <span class="value">{{ cancelCount() }}</span>
+    </div>
+
+    <div class="tooltip-row">
+      <span>משימות בתהליך:</span>
+      <span class="value">{{ processCount() }}</span>
+    </div>
+
+    <div class="tooltip-row">
+      <span>משימות ממתינות:</span>
+      <span class="value">{{ pendingCount() }}</span>
+    </div>
+
+  </div>
+
+</div>
