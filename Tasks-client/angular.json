@@ -20,6 +20,7 @@
             "outputPath": "dist/empty-project",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "poll": 2000,
             "polyfills": [
               "zone.js"
             ],

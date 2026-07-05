@@ -9,6 +9,12 @@ const checkConnectionService =   require('./services/checkConnectionService');
 const tasksService =   require('./services/tasksService');
 const usersService =   require('./services/usersService');
 const authenticationService =   require('./services/authenticationService');
+const massagesService =   require('./services/massagesService');
+const { initWebSocket } =   require('./services/webSocketService');
+const { startCheckDates } =   require('./utils/massagesUtils');
+
+// הפעלת WebSocket
+initWebSocket({port: 3005});
 
 app.use(
    bodyParser.urlencoded ({
@@ -23,6 +29,7 @@ app.use('/checkConnection',checkConnectionService);
 app.use('/tasks',tasksService);
 app.use('/users', usersService);
 app.use('/auth', authenticationService);
+app.use('/massages', massagesService);
 
 app.use((req,res,next) => {
     const error = new Error("not found")

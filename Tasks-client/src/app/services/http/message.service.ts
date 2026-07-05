@@ -8,7 +8,7 @@ import { HttpServiceBase } from './http-service.base';
 export class MessageService extends HttpServiceBase {
 
    private get _serverUrl(): string {
-      return `${this.config.ips.servicePath}messages/`;
+      return `${this.config.ips.servicePath}massages/`;
    }
 
    sendMessage$(userName:string, message:string): Observable<Boolean> {

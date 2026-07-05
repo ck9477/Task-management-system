@@ -81,7 +81,7 @@ export class TasksComponent implements OnInit, AfterViewInit{
 
   showMessage(userMessage: {userName:string, message: string}){
     const {userName, message} = userMessage
-    this.myChatRef.addMessage(userName ,  `💬 ${ message}`);
+    this.myChatRef.addMessage(userName, message);
   }
 
   showImportantMessage(serverMessage:{name: string, date:string}){
