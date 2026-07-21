@@ -1,39 +1,46 @@
-<form [formGroup]="taskForm"  class="task-form">
-  <label> 
-    <span  class="label" [innerText]="'שם'"></span>
-    <input formControlName="name" placeholder="הכנס שם למשימה" />
-  </label>
+<form [formGroup]="taskForm" class="dialog-form">
+  <div class="form-header">
+    <span class="material-icons">{{ isNew ? 'add_task' : 'edit_task' }}</span>
+    <h3>{{ isNew ? 'משימה חדשה' : 'עריכת משימה' }}</h3>
+  </div>
 
-  <label>
-     <span  class="label" [innerText]="'תאור'"></span>
-    <textarea formControlName="description"
-     placeholder="הכנס תאור למשימה" ></textarea>
-  </label>
+  <div class="form-body">
+    <div class="form-group">
+      <label class="form-label">שם המשימה</label>
+      <input class="form-input" formControlName="name" placeholder="הכנס שם למשימה" />
+    </div>
 
-  <label>
-     <span  class="label" [innerText]="'מחיר'"></span>
-    <input type="number" formControlName="price" placeholder="הכנס מחיר למשימה" />
-  </label>
+    <div class="form-group">
+      <label class="form-label">תיאור</label>
+      <textarea class="form-textarea" formControlName="description" placeholder="הכנס תיאור למשימה"></textarea>
+    </div>
 
-  
-     
-  <mat-form-field appearance="fill" dir="rtl">
-  <mat-label>בחר תאריך יעד</mat-label>
-  <input matInput [matDatepicker]="picker"  formControlName="scheduling" >
-  
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">מחיר (₪)</label>
+        <input class="form-input" type="number" formControlName="price" placeholder="מחיר" />
+      </div>
 
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-</mat-form-field>
- 
+      <div class="form-group">
+        <label class="form-label">תאריך יעד</label>
+        <mat-form-field appearance="fill" dir="rtl">
+          <input matInput [matDatepicker]="picker" formControlName="scheduling" placeholder="בחר תאריך">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
 
+    <div class="form-group">
+      <label class="form-label">סטטוס</label>
+      <app-status formControlName="status" [canChangeStatus]="!isNew || allowEditInProcess"></app-status>
+    </div>
+  </div>
 
-  <app-status  formControlName="status" [canChangeStatus]="!isNew || allowEditInProcess"></app-status>
- 
-   <div class="buttons">
-    <button [disabled]="taskForm.invalid" (click)="save()" 
-    [innerText]="buttonText()"></button>
-    
-    <button  (click)="cancel()">בטל</button>
+  <div class="form-actions">
+    <button class="btn btn-accent" [disabled]="taskForm.invalid" (click)="save()">
+      <span>{{ buttonText() }}</span>
+    </button>
+    <button class="btn btn-ghost" (click)="cancel()">בטל</button>
   </div>
 </form>

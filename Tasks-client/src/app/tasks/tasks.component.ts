@@ -1,8 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { StatusMode } from '../model/statusMode';
 import { ITask } from '../model/task';
 import { CommonModule } from '@angular/common';
-import { TaskComponent } from '../task/task.component';
 import { TaskViewMode } from '../model/taskViewMode';
 import { MatIconModule } from '@angular/material/icon';
 import { StatusTextPipe } from '../pipes/status-text.pipe';
@@ -10,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FilterStatusPipe } from '../pipes/filter-status.pipe';
 import { TasksTableComponent } from '../tasks-table/tasks-table.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { TasksDashboardComponent } from '../tasks-dashboard/tasks-dashboard.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TaskFormComponent } from '../task-form/task-form.component';
@@ -18,7 +17,7 @@ import { TasksService } from '../services/http/tasks.service';
 import { map, NEVER, Observable, tap } from 'rxjs';
 import { ChatComponent } from '../chat/chat.component';
 import { ConfigurationService } from '../services/configuration.service';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { TasksToolTipComponent } from '../tasks-tool-tip/tasks-tool-tip.component';
 
 
@@ -27,7 +26,6 @@ import { TasksToolTipComponent } from '../tasks-tool-tip/tasks-tool-tip.componen
   imports: [
     CommonModule,
     FormsModule,
-    TaskComponent,
     MatIconModule,
     StatusTextPipe,
     FilterStatusPipe,
@@ -37,7 +35,7 @@ import { TasksToolTipComponent } from '../tasks-tool-tip/tasks-tool-tip.componen
     TasksDashboardComponent,
     ChatComponent,
     MatBadgeModule,
-    TasksToolTipComponent
+    TasksToolTipComponent,
   ],
   standalone: true,
   templateUrl: './tasks.component.html',

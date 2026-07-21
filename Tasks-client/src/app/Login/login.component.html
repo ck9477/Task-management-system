@@ -1,34 +1,53 @@
-<div class="login-container">
-  <div class="login-box">
-    <h2>התחבר</h2>
+<div class="login-page">
+  <div class="login-card">
+    <!-- Header -->
+    <div class="login-header">
+      <div class="login-icon">
+        <span class="material-icons">lock</span>
+      </div>
+      <h2>התחברות</h2>
+      <p>הכנס פרטי משתמש כדי לגשת למערכת</p>
+    </div>
 
-    <form [formGroup]="formGroup" (ngSubmit)="login()">
-
-      <div class="input-group">
-        <label for="username">שם משתמש</label>
-        <input
-          type="text"
-          id="username"
-          formControlName="userName"
-        />
+    <!-- Form -->
+    <form [formGroup]="formGroup" (ngSubmit)="login()" class="login-form">
+      <div class="form-group">
+        <label class="form-label" for="username">שם משתמש</label>
+        <div class="input-with-icon">
+          <span class="material-icons input-icon">person</span>
+          <input
+            type="text"
+            id="username"
+            class="form-input has-icon"
+            formControlName="userName"
+            placeholder="הכנס שם משתמש"
+            autocomplete="username"
+          />
+        </div>
       </div>
 
-      <div class="input-group">
-        <label for="password">סיסמה</label>
-        <input
-          type="password"
-          id="password"
-          formControlName="password"
-        />
+      <div class="form-group">
+        <label class="form-label" for="password">סיסמה</label>
+        <div class="input-with-icon">
+          <span class="material-icons input-icon">key</span>
+          <input
+            type="password"
+            id="password"
+            class="form-input has-icon"
+            formControlName="password"
+            placeholder="הכנס סיסמה"
+            autocomplete="current-password"
+          />
+        </div>
       </div>
 
       <button
         type="submit"
-        class="login-btn"
+        class="btn btn-primary btn-lg w-full"
         [disabled]="formGroup.invalid">
-        התחבר
+        <span>התחבר</span>
+        <span class="material-icons">arrow_back</span>
       </button>
-
     </form>
   </div>
 </div>

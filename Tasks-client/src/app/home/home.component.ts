@@ -8,48 +8,62 @@ import { IHomeDetails } from '../model/homeData';
 @Component({
   standalone: true,
   selector: 'app-home',
-   imports:[
-    CommonModule,  
+  imports: [
+    CommonModule,
     RouterModule,
     CopyToClipboardDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
-  router = inject(Router); 
-  download = inject( DownloadService); 
-  homeDetails:IHomeDetails = {
-      name:   'חני ',  
-      profession:  'מתכנתת פולסטאק',
-      description: 'אני מתמחה בפיתוח אתרי אינטרנט ואפליקציות, עם ניסיון ב-Frontend וב-Backend. אשמח לעזור לך לבנות את הפרויקט הבא שלך!',
-      contactEmail:'chanik9477@gmail.com',
-      techStack: ['Angular 19', 'Node.js', 'TypeScript', 'Pyton', 'SQL', 'HTML', 'CSS', 'C++', 'Git','C#','React','Aws'],
-      meName:'  חני  ',
-      meTitle: ' מתכנתת פולסטאק ',
-      meDescription : 'אני בונה אפליקציות מודרניות, אתרים מדהימים, מערכות חכמות – ומשלבת בין עיצוב מדויק לקוד איכותי.',
-     
-    }
+export class HomeComponent implements OnInit {
+  router = inject(Router);
+  download = inject(DownloadService);
 
+  homeDetails: IHomeDetails = {
+    name: '',
+    profession: 'פיתוח תוכנה',
+    description: 'אפליקציות מודרניות, אתרים מדהימים, מערכות חכמות – פיתוח Full-Stack באיכות גבוהה.',
+    contactEmail: 'chanik9477@gmail.com',
+    techStack: ['Angular', 'React', 'Node.js', 'TypeScript', 'Python', 'C#', 'C++', 'SQL', 'HTML', 'CSS', 'Git', 'AWS'],
+    meName: 'מערכת ניהול משימות',
+    meTitle: 'פיתוח תוכנה',
+    meDescription: 'אפליקציות מודרניות, אתרים מדהימים, מערכות חכמות – פיתוח Full-Stack באיכות גבוהה.',
+  };
 
-        ngOnInit(): void {
-        
-        
-        }
-    openCV(){
-      this.download.downloadCv().subscribe(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'cv.pdf'; // ✅ Set desired file name
-            a.click();
-            window.URL.revokeObjectURL(url); // clean up
-      });
-    }
-
-    gotoTasks(){
-         this.router.navigate(['/main']);
-    }
-
-  
+  /** Map technology name to an emoji icon */
+  techIcon(tech: string): string {
+    const icons: Record<string, string> = {
+      'Angular': '🅰️',
+      'React': '⚛️',
+      'Node.js': '💚',
+      'TypeScript': '🔷',
+      'Python': '🐍',
+      'C#': '♯',
+      'C++': '⚡',
+      'SQL': '🗄️',
+      'HTML': '🏗️',
+      'CSS': '🎨',
+      'Git': '🔀',
+      'AWS': '☁️',
+    };
+    return icons[tech] || '💻';
   }
+
+  ngOnInit(): void {}
+
+  openCV() {
+    this.download.downloadCv().subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'cv.pdf';
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
+
+  gotoTasks() {
+    this.router.navigate(['/main']);
+  }
+}

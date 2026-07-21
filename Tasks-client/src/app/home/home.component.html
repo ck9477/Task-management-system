@@ -1,29 +1,102 @@
- 
-<div class="hero-section">
-  <div class="overlay">
-    <div class="content">
-      <h3 class="fade-in top">שלום,   אני <span class="highlight" [innerText]="homeDetails.meName"></span></h3>
-     
-      <h2 class="fade-in delay1" [innerText]="homeDetails.meTitle"></h2>
- 
-      <p class="fade-in delay2" [innerText]="homeDetails.meDescription">
-        
-      </p>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge animate-fade-in-up">
+      <span class="dot"></span> פיתוח תוכנה
+    </div>
 
-      <div class="buttons fade-in delay3">
-        <button   (click)="openCV()">קורות חיים</button>
-        <button (click)="gotoTasks()">לצפייה בפרוייקט</button>
-        <button  appCopyToClipboard>יצירת קשר</button>
+    <h1 class="hero-title animate-fade-in-up delay-1">
+      בונים פתרונות
+      <span class="gradient-text">תוכנה חכמים</span>
+    </h1>
+
+    <p class="hero-subtitle animate-fade-in-up delay-2">
+      אפליקציות מודרניות, מערכות חכמות, ממשקים נקיים — פיתוח Full-Stack באיכות גבוהה
+    </p>
+
+    <div class="hero-actions animate-fade-in-up delay-3">
+      <button class="btn btn-accent btn-lg" (click)="gotoTasks()">
+        <span>צפייה בפרויקט</span>
+        <span class="material-icons">arrow_back</span>
+      </button>
+      <button class="btn btn-outline btn-lg" (click)="openCV()">
+        <span>קורות חיים</span>
+        <span class="material-icons">download</span>
+      </button>
+      <button class="btn btn-ghost btn-lg" appCopyToClipboard>
+        <span>יצירת קשר</span>
+        <span class="material-icons">email</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,40 C360,100 720,0 1080,60 C1260,90 1380,50 1440,40 L1440,120 L0,120 Z" fill="#f5f7fa"/>
+    </svg>
+  </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="tech-section">
+  <div class="container">
+    <div class="section-header animate-fade-in-up">
+      <h2>טכנולוגיות</h2>
+      <p>הכלים והשפות איתן אנחנו עובדים</p>
+    </div>
+
+    <div class="tech-grid">
+      @for (tech of homeDetails.techStack; track tech; let i = $index) {
+        <div class="tech-card animate-fade-in-up"
+             [style.animation-delay]="(i * 0.08) + 's'">
+          <span class="tech-icon">{{ techIcon(tech) }}</span>
+          <span class="tech-name">{{ tech }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+  <div class="container">
+    <div class="section-header animate-fade-in-up">
+      <h2>מה אנחנו עושים</h2>
+      <p>פיתוח מקצה לקצה — מרעיון ועד מוצר עובד</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card animate-fade-in-up delay-1">
+        <div class="feature-icon">
+          <span class="material-icons">devices</span>
+        </div>
+        <h3>Frontend</h3>
+        <p>ממשקי משתמש מודרניים ורספונסיביים עם Angular, React וטכנולוגיות מתקדמות</p>
       </div>
 
-      <div class="tech-stack fade-in delay4">
-        <h3>טכנולוגיות:</h3>
-        <ul>
-         @for (tech of homeDetails.techStack; track tech) {
-            <li [innerText]="tech"></li>
-          }
-
-        </ul>
+      <div class="feature-card animate-fade-in-up delay-2">
+        <div class="feature-icon">
+          <span class="material-icons">dns</span>
+        </div>
+        <h3>Backend</h3>
+        <p>שרתים יציבים ומאובטחים עם Node.js, Python, ו-SQL Server</p>
       </div>
 
-    
+      <div class="feature-card animate-fade-in-up delay-3">
+        <div class="feature-icon">
+          <span class="material-icons">design_services</span>
+        </div>
+        <h3>עיצוב</h3>
+        <p>חוויית משתמש מעולה ועיצוב נקי שמתאים למובייל, טאבלט ומחשב</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 — כל הזכויות שמורות</p>
+  </div>
+</footer>

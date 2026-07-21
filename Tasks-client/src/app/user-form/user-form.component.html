@@ -1,35 +1,47 @@
-<form [formGroup]="userForm"  class="user-form">
-  <label> שם משתמש
-    <span  class="empty"></span>
-    <input type="text" formControlName="userName" placeholder="הכנס שם משתמש" />
-  </label>
+<form [formGroup]="userForm" class="dialog-form">
+  <div class="form-header">
+    <span class="material-icons">person_add</span>
+    <h3>משתמש חדש</h3>
+  </div>
 
-  <label>
-    טלפון
-    <input type="text" formControlName="phone"
-     placeholder="הכנס מספר טלפון"/>
-  </label>
+  <div class="form-body">
+    <div class="form-group">
+      <label class="form-label">שם משתמש</label>
+      <input class="form-input" type="text" formControlName="userName" placeholder="הכנס שם משתמש" />
+    </div>
 
-  <label>
-    אמייל
-    <input type="text" formControlName="email" placeholder="הכנס מייל" />
-  </label>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">טלפון</label>
+        <input class="form-input" type="text" formControlName="phone" placeholder="הכנס מספר טלפון" />
+      </div>
 
-    <label>
-    סיסמא
-    <input type="text" formControlName="password" placeholder="הכנס סיסמא" />
-  </label>
+      <div class="form-group">
+        <label class="form-label">אימייל</label>
+        <input class="form-input" type="text" formControlName="email" placeholder="הכנס אימייל" />
+      </div>
+    </div>
 
-   <label>בחר תפקיד:</label>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">סיסמה</label>
+        <input class="form-input" type="password" formControlName="password" placeholder="הכנס סיסמה" />
+      </div>
 
-        <select formControlName="roleId">
-            <option [ngValue]="theRoleEnum.manager">מנהל</option>
-            <option [ngValue]="theRoleEnum.standard">משתמש רגיל</option>
+      <div class="form-group">
+        <label class="form-label">תפקיד</label>
+        <select class="form-select" formControlName="roleId">
+          <option [ngValue]="theRoleEnum.manager">מנהל</option>
+          <option [ngValue]="theRoleEnum.standard">משתמש רגיל</option>
         </select>
-   <div class="buttons">
-    <button [disabled]="userForm.invalid" (click)="save()" 
-    [innerText]="'שמור'"></button>
-    
-    <button  (click)="cancel()">בטל</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn-accent" [disabled]="userForm.invalid" (click)="save()">
+      <span>שמור</span>
+    </button>
+    <button class="btn btn-ghost" (click)="cancel()">בטל</button>
   </div>
 </form>

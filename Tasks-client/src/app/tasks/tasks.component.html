@@ -1,50 +1,62 @@
-    <div class="container" *ngIf="(tasksList$ | async) | filterStatus:selectedStatus as tasksList; else message">
-      
-      <div class="flex">
-        <button type="button" 
-              class="button custom-badge" 
-              [matBadge]="tasksList.length" 
-              matBadgePosition="above before" 
-              (click)="changeViewState()" 
-              > 
-              <span [innerText]="viewState=== theStateEnum.Table?'לוח משימות':'טבלה'"></span>
-        </button>
-          <button type="button" class="button" (click)="addTask()" 
-          [innerText]="'הוסף משימה'"> </button>
-    
-        <mat-form-field  class="status-select" appearance="fill">
-        <mat-label>בחר אפשרות</mat-label>
-          <mat-select [(value)]="selectedStatus">
-            @for (status of statusList; track status) {
-                <mat-option  [value]="status.value">
-                  <span [innerText]="status.value | statusText"></span>
-                </mat-option>
-              }
-          </mat-select>
-        </mat-form-field>
-        <div class="empty"></div>
-        <app-task-tooltip [tasksList]="(tasksList$ | async) || []">
-          <div class="box">
-            מידע נוסף על המשימות  
-          </div>
-        </app-task-tooltip>
-        </div>
-          <div  *ngIf="viewState=== theStateEnum.Dashboard"  >
-                <app-tasks-dashboard 
-                [tasksList]="tasksList">
-                </app-tasks-dashboard>
-          </div>
-          <div *ngIf="viewState=== theStateEnum.Table">
-              <app-tasks-table
-                [tasksList]="tasksList"
-                (afterUpdate)="loadTasks()">
-                </app-tasks-table>
-        </div>
+<div class="tasks-page" *ngIf="(tasksList$ | async) | filterStatus:selectedStatus as tasksList; else message">
+  <!-- Toolbar -->
+  <div class="tasks-toolbar">
+    <div class="toolbar-left">
+      <h2 class="page-title">משימות</h2>
+      <span class="badge">{{ tasksList.length }}</span>
     </div>
-    <app-chat></app-chat>
- 
-<ng-template #message class="error"> 
-  <h1 [innerText]="errorMessage"></h1>
-  <img [src]="errorSrc"/>
+
+    <div class="toolbar-right">
+      <button class="btn btn-sm btn-outline" (click)="changeViewState()">
+        <span class="material-icons">{{ viewState === theStateEnum.Table ? 'dashboard' : 'table_chart' }}</span>
+        <span>{{ viewState === theStateEnum.Table ? 'לוח' : 'טבלה' }}</span>
+      </button>
+
+      <button class="btn btn-sm btn-accent" (click)="addTask()">
+        <span class="material-icons">add</span>
+        <span>משימה חדשה</span>
+      </button>
+
+      <mat-form-field class="status-filter" appearance="fill">
+        <mat-label>סינון לפי סטטוס</mat-label>
+        <mat-select [(value)]="selectedStatus">
+          @for (status of statusList; track status) {
+            <mat-option [value]="status.value">
+              {{ status.value | statusText }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <app-task-tooltip [tasksList]="(tasksList$ | async) || []">
+        <div class="stats-btn">
+          <span class="material-icons">info</span>
+          <span>סיכום</span>
+        </div>
+      </app-task-tooltip>
+    </div>
+  </div>
+
+  <!-- View: Dashboard -->
+  @if (viewState === theStateEnum.Dashboard) {
+    <app-tasks-dashboard [tasksList]="tasksList"></app-tasks-dashboard>
+  }
+
+  <!-- View: Table -->
+  @if (viewState === theStateEnum.Table) {
+    <app-tasks-table
+      [tasksList]="tasksList"
+      (afterUpdate)="loadTasks()">
+    </app-tasks-table>
+  }
+</div>
+
+<app-chat></app-chat>
+
+<ng-template #message>
+  <div class="empty-state">
+    <span class="material-icons">error_outline</span>
+    <h1>{{ errorMessage }}</h1>
+    <img [src]="errorSrc" alt="error" />
+  </div>
 </ng-template>
-  

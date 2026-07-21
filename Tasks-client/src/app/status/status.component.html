@@ -1,17 +1,36 @@
-<div class="container">
- <label >
-    <span  class="label" [innerText]="'סטטוס'"></span>
-    <mat-icon  [ngClass]="{'current':status===theStatusEnum.pending}"
-    [matTooltip]="statusToString(theStatusEnum.pending)"
-    (click)="changeStatus(theStatusEnum.pending)">hourglass_empty </mat-icon>
-    <mat-icon  [ngClass]="{'current':status===theStatusEnum.process, 'disabled':!canChangeStatus}"
-     [matTooltip]="statusToString(theStatusEnum.process)"
-    (click)="changeStatus(theStatusEnum.process)">hourglass_top </mat-icon>
-    <mat-icon  [ngClass]="{'current':status===theStatusEnum.completed, 'disabled':!canChangeStatus}"
-     [matTooltip]="statusToString(theStatusEnum.completed)"
-    (click)="changeStatus(theStatusEnum.completed)" >check </mat-icon>
-    <mat-icon  [ngClass]="{'current':status===theStatusEnum.cancel, 'disabled':!canChangeStatus}"
-     [matTooltip]="statusToString(theStatusEnum.cancel)"
-    (click)="changeStatus(theStatusEnum.cancel)" >cancel </mat-icon>
- </label>
+<div class="status-selector">
+  <button class="status-btn"
+          [class.active]="status === theStatusEnum.pending"
+          [matTooltip]="statusToString(theStatusEnum.pending)"
+          (click)="changeStatus(theStatusEnum.pending)">
+    <span class="material-icons">hourglass_empty</span>
+    <span class="status-label">ממתין</span>
+  </button>
+
+  <button class="status-btn"
+          [class.active]="status === theStatusEnum.process"
+          [class.disabled]="!canChangeStatus"
+          [matTooltip]="statusToString(theStatusEnum.process)"
+          (click)="changeStatus(theStatusEnum.process)">
+    <span class="material-icons">hourglass_top</span>
+    <span class="status-label">בתהליך</span>
+  </button>
+
+  <button class="status-btn completed"
+          [class.active]="status === theStatusEnum.completed"
+          [class.disabled]="!canChangeStatus"
+          [matTooltip]="statusToString(theStatusEnum.completed)"
+          (click)="changeStatus(theStatusEnum.completed)">
+    <span class="material-icons">check_circle</span>
+    <span class="status-label">הושלם</span>
+  </button>
+
+  <button class="status-btn cancel"
+          [class.active]="status === theStatusEnum.cancel"
+          [class.disabled]="!canChangeStatus"
+          [matTooltip]="statusToString(theStatusEnum.cancel)"
+          (click)="changeStatus(theStatusEnum.cancel)">
+    <span class="material-icons">cancel</span>
+    <span class="status-label">בוטל</span>
+  </button>
 </div>

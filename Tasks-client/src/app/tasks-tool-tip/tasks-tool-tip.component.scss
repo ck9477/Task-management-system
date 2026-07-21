@@ -23,11 +23,11 @@
   transform: translateX(50%);
   min-width: 200px;
 
-  background: #334e68; /* כחול בינוני להיררכיה עם הרקע */
-  color: #f8fafc;     /* טקסט בהיר */
+  background: #3d5a80;
+  color: #f8fafc;
   border-radius: 10px;
   padding: 10px 12px;
-  box-shadow: 0 12px 25px rgba(61, 90, 128, 0.25); /* דגש על הצללה עקבית */
+  box-shadow: 0 12px 25px rgba(61, 90, 128, 0.25);
   z-index: 1000;
 
   animation: fadeIn 0.2s ease;

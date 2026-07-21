@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { RouterModule } from '@angular/router';
 import { ToColumnNamePipe } from '../pipes/to-column-name.pipe';
 import { UsersService } from '../services/http/users.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -10,21 +9,19 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { SnackService } from '../services/snack.service';
 import { IUser } from '../model/user';
-import { map, NEVER, Observable, tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { RoleEnum } from '../model/role';
-import { MatButton } from '@angular/material/button';
 import { RoleTextPipe } from '../pipes/role-text.pipe';
 
 @Component({
   selector: 'app-users',
-   imports:[
-     CommonModule,
-     MatButton,
+  imports: [
+    CommonModule,
     MatIconModule,
     MatTableModule,
     ToColumnNamePipe,
-    RoleTextPipe
-   ],
+    RoleTextPipe,
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })

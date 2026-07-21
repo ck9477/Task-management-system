@@ -1,23 +1,67 @@
 :host {
+  display: block;
+  direction: rtl;
+}
 
-  .shake {
-    display: inline-block;
+/* ============================================================
+   DASHBOARD GRID
+   ============================================================ */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+  padding: 0;
+}
 
-    color: #334e68; 
-    font-weight: 700;
-    font-size: 18px;
+/* Shake badge for pending tasks */
+.shake-badge {
+  display: inline-block;
+  padding: 2px 12px;
+  background: rgba(214, 158, 46, 0.15);
+  color: #b7791f;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-full);
+  animation: shake 0.6s ease-in-out infinite;
+}
 
-    animation: shake 0.6s ease-in-out infinite;
+@keyframes shake {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  15% { transform: translate(-2px, 0px) rotate(-1deg); }
+  30% { transform: translate(2px, 1px) rotate(1deg); }
+  45% { transform: translate(-2px, -1px) rotate(0deg); }
+  60% { transform: translate(2px, 0px) rotate(-1deg); }
+  75% { transform: translate(-1px, 1px) rotate(1deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Empty state */
+.empty-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--color-text-muted);
+  gap: var(--space-3);
+}
+
+.empty-dashboard .material-icons {
+  font-size: 56px;
+  opacity: 0.4;
+}
+
+.empty-dashboard p {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
-
-  @keyframes shake {
-    0% { transform: translate(0px, 0px) rotate(0deg); }
-    15% { transform: translate(-2px, 0px) rotate(-1deg); }
-    30% { transform: translate(2px, 1px) rotate(1deg); }
-    45% { transform: translate(-2px, -1px) rotate(0deg); }
-    60% { transform: translate(2px, 0px) rotate(-1deg); }
-    75% { transform: translate(-1px, 1px) rotate(1deg); }
-    100% { transform: translate(0px, 0px) rotate(0deg); }
-  }
-
 }

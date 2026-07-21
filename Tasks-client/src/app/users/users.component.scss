@@ -1,147 +1,147 @@
 :host {
-
-  /* Wrapper סביב הטבלה, כדי שהכפתור יהיה יחסית אליו */
-  .mat-table-wrapper {
-    position: relative;
-    width: 100%;
-    margin-top: 20px; /* רווח מהכותרת או חלק אחר */
-  }
-
-  /* כפתור פעולה בראש */
-  .header-action-btn {
-  display: block !important;
-  position: static !important;
-
-  width: 180px;
-  height: 45px;
-
-  margin: 20px;
-
-  background: #3d5a80 !important;
-  color: white !important;
-
-  border: none;
-  border-radius: 10px;
-
-  cursor: pointer;
+  display: block;
+  direction: rtl;
 }
-  // .header-action-btn:hover {
-  //   transform: translateY(-2px);
-  //   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  //   background: linear-gradient(135deg, #627d98, #3d5a80);
-  // }
 
-  /* טבלת משתמשים */
+/* ============================================================
+   USERS PAGE
+   ============================================================ */
+.users-page {
+  padding: var(--space-6);
+  max-width: 1300px;
+  margin: 0 auto;
+  min-height: calc(100vh - 64px);
+}
+
+/* Toolbar */
+.users-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.page-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+/* Table container */
+.table-container {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--color-surface);
+}
+
+.custom-table {
+  width: 100%;
+  direction: rtl;
+  font-family: var(--font-family);
+}
+
+/* Header */
+mat-header-row {
+  min-height: 52px;
+}
+
+mat-header-cell {
+  color: #ffffff !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: var(--font-size-sm) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 var(--space-5) !important;
+  border: none !important;
+}
+
+/* Rows */
+mat-row {
+  min-height: 48px;
+  transition: background var(--transition-fast);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+mat-row:last-child {
+  border-bottom: none;
+}
+
+mat-row:hover {
+  background: rgba(61, 90, 128, 0.03);
+}
+
+mat-cell {
+  padding: 0 var(--space-5) !important;
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+}
+
+/* Role badge */
+.role-badge {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  background: rgba(49, 130, 206, 0.1);
+  color: #2b6cb0;
+}
+
+.role-badge.role-manager {
+  background: rgba(56, 161, 105, 0.1);
+  color: #276749;
+}
+
+/* Delete button */
+.btn-icon-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-icon-delete:hover:not(:disabled) {
+  background: rgba(229, 62, 62, 0.08);
+}
+
+.btn-icon-delete .material-icons {
+  font-size: 18px;
+  color: var(--color-danger);
+  transition: transform var(--transition-fast);
+}
+
+.btn-icon-delete:hover:not(:disabled) .material-icons {
+  transform: scale(1.1);
+}
+
+.btn-icon-delete:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .users-page {
+    padding: var(--space-4);
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
   .custom-table {
-    width: 100%;
-    direction: rtl;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #ffffff;
-    box-shadow: 0 8px 20px rgba(61, 90, 128, 0.1);
+    min-width: 600px;
   }
-
-  mat-header-row {
-    background: #3d5a80;
-  }
-
-  mat-header-cell {
-    color: white;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 18px 16px;
-    border: none;
-    text-align: right;
-  }
-
-  mat-row {
-    transition: 0.25s ease;
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  mat-row:hover {
-    background: #f0f4f8;
-  }
-
-  mat-cell {
-    padding: 16px;
-    color: #334e68;
-    font-size: 0.95rem;
-    text-align: right;
-  }
-
-  mat-header-cell, mat-cell {
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-
-  mat-icon {
-    color: #3d5a80;
-  }
-
-  .delete {
-    background: transparent;
-  }
-
-  button {
-    border-radius: 8px;
-    transition: 0.25s;
-  }
-
-  button:hover:not(:disabled) {
-    transform: scale(1.05);
-  }
-
-  button[disabled] mat-icon {
-    color: #94a3b8;
-  }
-
-  /* רוחב עמודות */
-  .status-column { max-width: 18% !important; }
-  .update-column, .delete-column { max-width: 6% !important; }
-  .column { max-width: 18%; }
-
-  /* טבלת סטיילינג נוסף */
-  .styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(61, 90, 128, 0.12);
-  }
-
-  .styled-table thead {
-    background: #3d5a80;
-    color: white;
-  }
-
-  .styled-table th, .styled-table td {
-    text-align: center;
-    padding: 16px;
-    border-bottom: 1px solid #e2e8f0;
-    color: #334e68;
-  }
-
-  .styled-table tbody tr:nth-child(even) {
-    background: #fafbfd;
-  }
-
-  .styled-table tbody tr:hover {
-    background: #f0f4f8;
-  }
-
-  @media (max-width: 768px) {
-    .styled-table {
-      display: block;
-      overflow-x: auto;
-    }
-
-    .styled-table th,
-    .styled-table td {
-      padding: 12px;
-    }
-  }
-
 }

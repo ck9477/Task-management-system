@@ -1,139 +1,102 @@
 :host {
-  display: flex;
-  justify-content: center;
+  display: block;
   direction: rtl;
-  font-family: 'Rubik', 'Segoe UI', sans-serif;
-  background: #f0f4f8;
-  padding: 30px;
+  font-family: var(--font-family);
 }
 
-.task-form {
-  width: 100%;
-  max-width: 650px;
-  margin: 30px auto;
-  padding: 40px;
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid rgba(61, 90, 128, 0.08);
-  box-shadow: 0 12px 30px rgba(61, 90, 128, 0.12), 0 25px 60px rgba(61, 90, 128, 0.08);
+/* ============================================================
+   DIALOG FORM
+   ============================================================ */
+.dialog-form {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+/* Header */
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: #ffffff;
+}
+
+.form-header .material-icons {
+  font-size: 24px;
+}
+
+.form-header h3 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Body */
+.form-body {
+  padding: var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: var(--space-5);
 }
 
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #3d5a80;
+/* Form row (side by side) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
 }
 
-input,
-textarea,
-mat-form-field {
+/* Adjust Material datepicker */
+.mat-mdc-form-field {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #d9e2ec;
-  border-radius: 14px;
-  background: #f8fafc;
-  color: #102a43;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #94a3b8;
+.mat-mdc-text-field-wrapper {
+  background: var(--color-surface) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1.5px solid var(--color-border) !important;
 }
 
-input:hover,
-textarea:hover {
-  border-color: #18e6c3;
+.mat-mdc-text-field-wrapper:hover {
+  border-color: var(--color-accent) !important;
 }
 
-input:focus,
-textarea:focus {
-  outline: none;
-  background: #ffffff;
-  border-color: #18e6c3;
-  box-shadow: 0 0 0 4px rgba(24, 230, 195, 0.15);
+.mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(24, 230, 195, 0.15) !important;
 }
 
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.buttons {
+/* Actions */
+.form-actions {
   display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 10px;
+  gap: var(--space-3);
+  justify-content: flex-end;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-background);
+  border-top: 1px solid var(--color-border-light);
 }
 
-.buttons button {
-  min-width: 160px;
-  padding: 13px 22px;
-  border: none;
-  border-radius: 14px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 
-.buttons button:first-child {
-  color: white;
-  background: linear-gradient(90deg, #3d5a80, #18e6c3);
-}
+  .form-body {
+    padding: var(--space-4);
+  }
 
-.buttons button:first-child:hover:not(:disabled) {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(61, 90, 128, 0.25);
-  background: linear-gradient(90deg, #18e6c3, #3d5a80);
-}
+  .form-actions {
+    flex-direction: column;
+    padding: var(--space-4);
+  }
 
-.buttons button:last-child {
-  background: #f0f4f8;
-  color: #334e68;
-}
-
-.buttons button:last-child:hover {
-  background: #d9e2ec;
-}
-
-.buttons button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* ==========================================
-   DATEPICKER – טקסט כהה בכל הלוח
-   ========================================== */
-.mat-calendar {
-  color: #0f172a; /* צבע כהה לכל הלוח */
-}
-
-.mat-calendar-header {
-  color: #0f172a !important; /* שנה, חודש */
-}
-
-.mat-calendar-previous-button,
-.mat-calendar-next-button,
-.mat-calendar-table-header th {
-  color: #0f172a !important; /* חצים וימי השבוע */
-}
-
-.mat-calendar-body-cell-content {
-  color: #0f172a !important; /* כל התאריכים */
-}
-
-.mat-calendar-body-disabled .mat-calendar-body-cell-content {
-  color: #6b7280 !important; /* תאריכים מנוטרלים */
-}
-
-.mat-calendar-body-selected {
-  color: #ffffff !important; /* תאריך נבחר */
+  .form-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -1,20 +1,41 @@
-<div *ngIf="task" class="one-box">
+<div *ngIf="task" class="task-card"
+     [class.status-pending]="task.status === theStatusEnum.pending"
+     [class.status-process]="task.status === theStatusEnum.process"
+     [class.status-completed]="task.status === theStatusEnum.completed"
+     [class.status-cancel]="task.status === theStatusEnum.cancel">
 
-  <div class="divColor" [innerText]="task.name"></div>
-
-  <div class="content">
-    <div class="data" [innerText]="task.description"></div>
-    <div class="data">מחיר: {{ task.price | currency:'ILS' }}</div>
-    <div class="data">תאריך: {{ task.scheduling | date:'dd/MM/yyyy' }}</div>
+  <!-- Card Header -->
+  <div class="task-header">
+    <h3 class="task-name">{{ task.name }}</h3>
+    <span class="task-status-badge" [class]="statusClass()">
+      {{ task.status | statusText }}
+    </span>
   </div>
 
-  <div class="status-row">
-    <span>{{ task.status | statusText }}</span>
-    <mat-icon>{{ task.status | statusIcon }}</mat-icon>
+  <!-- Card Body -->
+  <div class="task-body">
+    <p class="task-desc">{{ task.description }}</p>
+
+    <div class="task-meta">
+      <div class="meta-item">
+        <span class="material-icons">event</span>
+        <span>{{ task.scheduling | date:'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="meta-item">
+        <span class="material-icons">payments</span>
+        <span>{{ task.price | currency:'ILS' }}</span>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <ng-content select="[end]"></ng-content>
+  <!-- Card Footer -->
+  <div class="task-footer">
+    <div class="status-indicator">
+      <mat-icon>{{ task.status | statusIcon }}</mat-icon>
+      <span>{{ task.status | statusText }}</span>
+    </div>
+    <div class="actions">
+      <ng-content select="[end]"></ng-content>
+    </div>
   </div>
-
 </div>

@@ -1,30 +1,63 @@
-<div class="row">
-  <nav class="navbar">
-    <ul>
-      
-      @for(button of buttons;track button;){
-        <li><a class="active"  
-         [ngClass]="{'disabled': button.disabled}"
-         [innerText]="button.name"
-          (click)="navigate(button.value)"
-          routerLink=""
-          routerLinkActive="active">
-        </a></li>
-       }
-    </ul>
-  </nav>
-  
+<header class="app-header">
+  <div class="header-inner">
+    <!-- Brand / Logo -->
+    <div class="brand" (click)="goToComponent('home')">
+      <span class="brand-icon material-icons">assignment</span>
+      <span class="brand-text">משימות</span>
+    </div>
 
-    <div class="flex-col"> 
-      <div class="flex-row">
-        <span  *ngIf="isServerAlive === null">בודק מצב שרת...</span>
-        <span  *ngIf="isServerAlive === true" style="color: green;">✅ השרת פעיל</span>
-        <span  *ngIf="isServerAlive === false" style="color: red;">❌ השרת אינו פעיל</span>
-     </div>
-      <button [innerText]="'החלף משתמש'" 
-      (click)="changeUser()"
-      [disabled]="!isServerAlive"></button>
-  </div> 
-</div>
-<router-outlet></router-outlet>
+    <!-- Navigation -->
+    <nav class="nav-desktop">
+      @for (button of buttons; track button) {
+        <a class="nav-link"
+           [class.active]="button.active"
+           [class.disabled]="button.disabled"
+           (click)="navigate(button.value)"
+           [innerText]="button.name">
+        </a>
+      }
+    </nav>
 
+    <!-- Right section: status + user -->
+    <div class="header-actions">
+      <!-- Server status indicator -->
+      <div class="server-status" [class.online]="isServerAlive === true" [class.offline]="isServerAlive === false">
+        <span class="status-dot"></span>
+        <span class="status-text">
+          @if (isServerAlive === null) { בודק... }
+          @else if (isServerAlive === true) { מחובר }
+          @else { מנותק }
+        </span>
+      </div>
+
+      <button class="btn btn-sm btn-outline" (click)="changeUser()" [disabled]="!isServerAlive">
+        <span class="material-icons">swap_horiz</span>
+        <span>החלף</span>
+      </button>
+
+      <!-- Mobile menu toggle -->
+      <button class="menu-toggle" (click)="mobileOpen = !mobileOpen">
+        <span class="material-icons">{{ mobileOpen ? 'close' : 'menu' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile navigation -->
+  @if (mobileOpen) {
+    <nav class="nav-mobile">
+      @for (button of buttons; track button) {
+        <a class="nav-link"
+           [class.active]="button.active"
+           [class.disabled]="button.disabled"
+           (click)="navigate(button.value); mobileOpen = false"
+           [innerText]="button.name">
+        </a>
+      }
+    </nav>
+  }
+</header>
+
+<!-- Main content area -->
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

@@ -1,12 +1,16 @@
-<div    class="rect">
+<div class="dashboard">
+  @for (oneTask of tasksList; track oneTask) {
+    <app-task [task]="oneTask">
+      @if (oneTask.status === theStatusEnum.pending) {
+        <span class="shake-badge" end>נונונו...</span>
+      }
+    </app-task>
+  }
+</div>
 
-    @for (oneTask of tasksList ; track oneTask) {
-        <app-task [task]="oneTask">
-            
-        
-            @if(oneTask.status=== theStatusEnum.pending){
-            <span class="shake" end>נונונו...</span>
-            }
-        </app-task>
-    }
+@if (!tasksList || tasksList.length === 0) {
+  <div class="empty-dashboard">
+    <span class="material-icons">inbox</span>
+    <p>אין משימות להצגה</p>
   </div>
+}

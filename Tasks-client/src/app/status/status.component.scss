@@ -1,42 +1,78 @@
 :host {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  display: block;
   direction: rtl;
-  font-family: 'Rubik', 'Segoe UI', sans-serif;
-  padding: 20px;
-  background: #f0f4f8;
 }
 
-.current {
-  color: #18e6c3; /* צבע אחיד עם שאר האתר */
-  border: 2px solid #3d5a80; /* גבול מודגש */
-  border-radius: 50%;
-  padding: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(61, 90, 128, 0.12);
-  transition: all 0.3s ease;
-}
-
-.current:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(61, 90, 128, 0.18);
-}
-
-.disabled {
-  color: #627d98; /* אפור כהה יותר לקריאה */
-  pointer-events: none;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-label {
-  color: #334e68; /* צבע ראשי לטקסט */
-  width: 200px !important;
+/* ============================================================
+   STATUS SELECTOR
+   ============================================================ */
+.status-selector {
   display: flex;
-  font-weight: 500;
-  padding: 6px 0;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.status-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.status-btn .material-icons {
+  font-size: 18px;
+}
+
+.status-btn:hover:not(.disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+/* Active states */
+.status-btn.active {
+  border-color: #3182ce;
+  background: rgba(49, 130, 206, 0.08);
+  color: #2b6cb0;
+}
+
+.status-btn.completed.active {
+  border-color: var(--color-success);
+  background: rgba(56, 161, 105, 0.08);
+  color: #276749;
+}
+
+.status-btn.cancel.active {
+  border-color: var(--color-danger);
+  background: rgba(229, 62, 62, 0.08);
+  color: #c53030;
+}
+
+/* Disabled */
+.status-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+  .status-selector {
+    flex-direction: column;
+  }
+
+  .status-label {
+    flex: 1;
+  }
 }

@@ -1,47 +1,52 @@
-<!-- כפתור צ'אט צף -->
-<button
-  mat-fab
-  color="primary"
-  class="chat-button"
+<!-- Floating chat button -->
+<button class="chat-fab"
   *ngIf="!open"
   (click)="openChat()"
->
-  <mat-icon>chat</mat-icon>
+  [matTooltip]="'פתח צ\'אט'">
+  <span class="material-icons">chat</span>
+  <span class="fab-pulse"></span>
 </button>
 
-<!-- חלונית הצ'אט -->
-<mat-card class="chat-box" *ngIf="open" [ngStyle]="num | randomColor: 'border':5">
-  <mat-card-header>
-    <div class="chat-header">
-      <span>צ׳אט תמיכה</span>
-      <button mat-icon-button (click)="closeChat()">
-        <mat-icon>close</mat-icon>
-      </button>
+<!-- Chat window -->
+<div class="chat-window" *ngIf="open">
+  <!-- Header -->
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <span class="material-icons">support_agent</span>
+      <div>
+        <h4>צ׳אט תמיכה</h4>
+        <span class="online-badge">מחובר</span>
+      </div>
     </div>
-  </mat-card-header>
-
-  <mat-card-content class="chat-content">
-    <div *ngFor="let msg of messages" [ngClass]="msg.sender" >
-      <div [innerText]="msg.sender" 
-      [ngStyle]="num | randomColor: 'color'"></div>
-      <div id="chat-message" class="chat-message" 
-       [innerHTML]="msg.text| chatMessage"
-       [ngStyle]="num | randomColor: 'border':1"></div> 
-    </div>
-  </mat-card-content>
-
-  <mat-card-actions class="chat-input">
-    <mat-form-field appearance="outline" class="input-field">
-      <input
-        matInput
-        placeholder="הקלד הודעה..."
-        [(ngModel)]="input"
-        (keydown.enter)="send()"
-      />
-    </mat-form-field>
-    <button mat-icon-button color="primary" (click)="send()">
-      <mat-icon>send</mat-icon>
+    <button class="chat-close" (click)="closeChat()">
+      <span class="material-icons">close</span>
     </button>
-  </mat-card-actions>
-</mat-card>
+  </div>
 
+  <!-- Messages area -->
+  <div class="chat-messages" #scrollContainer>
+    @for (msg of messages; track msg) {
+      <div class="message-wrapper" [class.message-own]="msg.sender">
+        <div class="message-sender" *ngIf="msg.sender">
+          {{ msg.sender }}
+        </div>
+        <div class="message-bubble" [class.bubble-own]="msg.sender"
+             [innerHTML]="msg.text | chatMessage">
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Input area -->
+  <div class="chat-input-area">
+    <input
+      class="chat-input"
+      placeholder="הקלד הודעה..."
+      [(ngModel)]="input"
+      (keydown.enter)="send()"
+    />
+    <button class="chat-send" (click)="send()">
+      <span class="material-icons">send</span>
+    </button>
+  </div>
+</div>
